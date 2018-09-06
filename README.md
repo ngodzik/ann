@@ -6,4 +6,4 @@ For now, only a feedforward perceptron multi-layer architecture is implemented.
 
 TODO:
 - Add the backpropagation algorithm
-- Add functional testing for the perceptron using cosinus or sinus function to approximate for exemple.
+- Add functional testing for the perceptron using cosinus or sinus function to approximate for example.
