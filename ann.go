@@ -1,6 +1,7 @@
 package ann
 
 type feedforward interface {
-	Compute(weights []float64, inputs []float64) []float64
+	SetWeights(weights []float64)
+	Compute(inputs []float64) []float64
 	GetWeigthsLen()
 }

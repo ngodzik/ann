@@ -1,5 +1,10 @@
 package ann
 
+import (
+	"errors"
+	"fmt"
+)
+
 // Perceptron Multilayer structure
 type Perceptron struct {
 	nLayers      int
@@ -16,16 +21,14 @@ type Perceptron struct {
 
 // NewPerceptron returns a new perceptron instance.
 func NewPerceptron(layersList ...int) *Perceptron {
-	return &Perceptron{layers: layersList}
-}
+	p := &Perceptron{}
 
-// SetLayers defines the number of neurons by layer from bottom layer to top layer
-func (p *Perceptron) SetLayers(layersList ...int) {
 	p.layers = layersList
 	p.nLayers = len(layersList)
 	p.nInputs = p.layers[0]
 	p.nOutputs = p.layers[p.nLayers-1]
 
+	p.layerIndexes = make([]int, p.nLayers)
 	p.layerIndexes[0] = 0
 	p.nNeurons = p.layers[0]
 	p.nWeights = 0
@@ -37,6 +40,24 @@ func (p *Perceptron) SetLayers(layersList ...int) {
 		p.nWeights += p.layers[i] * (p.layers[i-1] + 1)
 	}
 	p.layerIndexes[p.nLayers] = p.nNeurons
+
+	p.weights = make([]float64, p.nWeights)
+	return p
+}
+
+// SetWeights sets all the weights values in the neural network.
+// By default, all the weights are set to zero.
+func (p *Perceptron) SetWeights(weights []float64) error {
+	if len(weights) != p.nWeights {
+		return errors.New(fmt.Sprintf("weigths size is incorrect, expected: %d", p.nWeights))
+		p.weights = weights
+	}
+	return nil
+}
+
+// GetWeigthsLen returns the number of weights.
+func (p *Perceptron) GetWeightsLen() int {
+	return p.nWeights
 }
 
 // Compute returns the output values of the perceptron given the values from the first layer.
