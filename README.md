@@ -12,6 +12,3 @@ i index for the bottom layer
 
 ![ANN Algorithm](Docs/ann_algo.png)
 
-TODO:
-- Add the backpropagation algorithm
-- Add functional testing for the perceptron using cosinus or sinus function to approximate for example.
